@@ -1,19 +1,21 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
-import { UserType } from './user.dto';
+import { UserType, UserTypeResult } from './user.dto';
 import { UserService } from 'src/domain/user/user.service';
+import { handleError } from 'src/errors';
 
 @Resolver()
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
-  @Query(() => UserType)
+  @Query(() => UserTypeResult)
   async user(@Args('id', { type: () => String }) id: string) {
-    return {
-      id,
-      name: 'John Doe',
-    };
+    try {
+      return await this.userService.getUserById(id);
+    } catch (e) {
+      return handleError(e);
+    }
   }
 
-  @Query(() => UserType)
+  @Query(() => UserType, { nullable: true })
   async me() {
     const user = await this.userService.getCurrentUser();
     if (user) {

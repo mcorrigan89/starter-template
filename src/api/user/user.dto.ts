@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { User } from '@prisma/client';
+import { createErrorUnionType } from '../error/error.dto';
 
 @ObjectType('User')
 export class UserType
@@ -23,3 +24,5 @@ export class UserType
   @Field(() => String, { nullable: true })
   familyName: string;
 }
+
+export const UserTypeResult = createErrorUnionType(UserType);

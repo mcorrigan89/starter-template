@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CurrentUserService } from './current-user.service';
 import { CreateUserInput, UserRepository } from './user.repository';
 import { User } from '@prisma/client';
+import { z } from 'zod';
+import { BadRequestError, NotFoundError } from 'src/errors';
 
 @Injectable()
 export class UserService {
@@ -15,7 +17,15 @@ export class UserService {
   }
 
   public async getUserById(id: string) {
-    return this.userRepository.getUserById(id);
+    const uuid = z.string().uuid().safeParse(id);
+    if (!uuid.success) {
+      throw new BadRequestError('Invalid user id');
+    }
+    const user = await this.userRepository.getUserById(uuid.data);
+    if (!user) {
+      throw new NotFoundError('User not found');
+    }
+    return user;
   }
 
   public async getUserByEmail(email: string) {

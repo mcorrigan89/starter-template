@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@envelop/core':
+    specifier: ^4.0.0
+    version: 4.0.0
   '@graphql-yoga/nestjs':
     specifier: ^2.0.3
     version: 2.0.3(@nestjs/common@10.1.1)(@nestjs/core@10.1.1)(@nestjs/graphql@12.0.8)(graphql-yoga@4.0.3)(graphql@16.7.1)
