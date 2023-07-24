@@ -8,9 +8,11 @@ import { IntegrationsModule } from './integrations/integrations.module';
 import { ClsModule } from 'nestjs-cls';
 import { Request } from 'express';
 import { DomainModule } from './domain/domain.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
+    PrismaModule,
     GraphQLModule.forRoot<YogaDriverConfig>({
       driver: YogaDriver,
       autoSchemaFile: true,

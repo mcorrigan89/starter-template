@@ -16,6 +16,9 @@ dependencies:
   '@nestjs/platform-express':
     specifier: ^10.1.1
     version: 10.1.1(@nestjs/common@10.1.1)(@nestjs/core@10.1.1)
+  '@prisma/client':
+    specifier: 5.0.0
+    version: 5.0.0(prisma@5.0.0)
   auth0:
     specifier: ^3.6.0
     version: 3.6.0
@@ -34,6 +37,9 @@ dependencies:
   nestjs-cls:
     specifier: ^3.5.0
     version: 3.5.0(@nestjs/common@10.1.1)(@nestjs/core@10.1.1)
+  prisma:
+    specifier: 5.0.0
+    version: 5.0.0
   reflect-metadata:
     specifier: ^0.1.13
     version: 0.1.13
@@ -578,8 +584,8 @@ packages:
       eslint-visitor-keys: 3.4.1
     dev: true
 
-  /@eslint-community/regexpp@4.6.0:
-    resolution: {integrity: sha512-uiPeRISaglZnaZk8vwrjQZ1CxogZeY/4IYft6gBOTqu1WhVXWmCmZMWxUv2Q/pxSvPdp1JPaO62kLOcOkMqWrw==}
+  /@eslint-community/regexpp@4.6.1:
+    resolution: {integrity: sha512-O7x6dMstWLn2ktjcoiNLDkAGG2EjveHL+Vvc+n0fXumkJYAcSqcVYKtwDU+hDZ0uDUsnUagSYaZrOLAYE8un1A==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
     dev: true
 
@@ -991,6 +997,11 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: true
 
+  /@jridgewell/resolve-uri@3.1.1:
+    resolution: {integrity: sha512-dSYZh7HhCDtCKm4QakX0xFpsRDqjjtZf/kjI/v3T3Nwt5r8/qz/M19F9ySyOqU94SXBmeG9ttTul+YnR4LOxFA==}
+    engines: {node: '>=6.0.0'}
+    dev: true
+
   /@jridgewell/set-array@1.1.2:
     resolution: {integrity: sha512-xnkseuNADM0gt2bs+BvhO0p78Mk762YnZdsuzFV018NoG1Sj1SCQvpSqa7XUaTam5vAGasABV9qXASMKnFMwMw==}
     engines: {node: '>=6.0.0'}
@@ -1021,7 +1032,7 @@ packages:
   /@jridgewell/trace-mapping@0.3.9:
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
     dependencies:
-      '@jridgewell/resolve-uri': 3.1.0
+      '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
@@ -1279,6 +1290,29 @@ packages:
       tslib: 2.6.0
     dev: true
 
+  /@prisma/client@5.0.0(prisma@5.0.0):
+    resolution: {integrity: sha512-XlO5ELNAQ7rV4cXIDJUNBEgdLwX3pjtt9Q/RHqDpGf43szpNJx2hJnggfFs7TKNx0cOFsl6KJCSfqr5duEU/bQ==}
+    engines: {node: '>=16.13'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 4.17.0-26.6b0aef69b7cdfc787f822ecd7cdc76d5f1991584
+      prisma: 5.0.0
+    dev: false
+
+  /@prisma/engines-version@4.17.0-26.6b0aef69b7cdfc787f822ecd7cdc76d5f1991584:
+    resolution: {integrity: sha512-HHiUF6NixsldsP3JROq07TYBLEjXFKr6PdH8H4gK/XAoTmIplOJBCgrIUMrsRAnEuGyRoRLXKXWUb943+PFoKQ==}
+    dev: false
+
+  /@prisma/engines@5.0.0:
+    resolution: {integrity: sha512-kyT/8fd0OpWmhAU5YnY7eP31brW1q1YrTGoblWrhQJDiN/1K+Z8S1kylcmtjqx5wsUGcP1HBWutayA/jtyt+sg==}
+    requiresBuild: true
+    dev: false
+
   /@repeaterjs/repeater@3.0.4:
     resolution: {integrity: sha512-AW8PKd6iX3vAZ0vA43nOUOnbq/X5ihgU+mSXXqunMkeQADGiqw/PY0JNeYtD5sr0PAy51YPgAPbDoeapv9r8WA==}
     dev: false
@@ -1516,7 +1550,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@eslint-community/regexpp': 4.6.0
+      '@eslint-community/regexpp': 4.6.1
       '@typescript-eslint/parser': 6.1.0(eslint@8.45.0)(typescript@5.1.6)
       '@typescript-eslint/scope-manager': 6.1.0
       '@typescript-eslint/type-utils': 6.1.0(eslint@8.45.0)(typescript@5.1.6)
@@ -2136,7 +2170,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001517
-      electron-to-chromium: 1.4.468
+      electron-to-chromium: 1.4.469
       node-releases: 2.0.13
       update-browserslist-db: 1.0.11(browserslist@4.21.9)
     dev: true
@@ -2631,8 +2665,8 @@ packages:
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  /electron-to-chromium@1.4.468:
-    resolution: {integrity: sha512-6M1qyhaJOt7rQtNti1lBA0GwclPH+oKCmsra/hkcWs5INLxfXXD/dtdnaKUYQu/pjOBP/8Osoe4mAcNvvzoFag==}
+  /electron-to-chromium@1.4.469:
+    resolution: {integrity: sha512-HRN9XQjElxJBrdDky5iiUUr3eDwXGTg6Cp4IV8MuNc8VqMkYSneSnIe6poFKx9PsNzkudCgaWCBVxwDqirwQWQ==}
     dev: true
 
   /emittery@0.13.1:
@@ -2755,7 +2789,7 @@ packages:
     hasBin: true
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@8.45.0)
-      '@eslint-community/regexpp': 4.6.0
+      '@eslint-community/regexpp': 4.6.1
       '@eslint/eslintrc': 2.1.0
       '@eslint/js': 8.44.0
       '@humanwhocodes/config-array': 0.11.10
@@ -4791,6 +4825,15 @@ packages:
       ansi-styles: 5.2.0
       react-is: 18.2.0
     dev: true
+
+  /prisma@5.0.0:
+    resolution: {integrity: sha512-KYWk83Fhi1FH59jSpavAYTt2eoMVW9YKgu8ci0kuUnt6Dup5Qy47pcB4/TLmiPAbhGrxxSz7gsSnJcCmkyPANA==}
+    engines: {node: '>=16.13'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 5.0.0
+    dev: false
 
   /process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
