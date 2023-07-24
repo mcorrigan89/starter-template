@@ -9,6 +9,9 @@ import { ClsModule } from 'nestjs-cls';
 import { Request } from 'express';
 import { DomainModule } from './domain/domain.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { useGraphQLSSE } from '@graphql-yoga/plugin-graphql-sse';
+import { CustomFileScalar } from './api/file/file.scalar';
+import { MediaModule } from './media/media.module';
 
 @Module({
   imports: [
@@ -16,6 +19,8 @@ import { PrismaModule } from './prisma/prisma.module';
     GraphQLModule.forRoot<YogaDriverConfig>({
       driver: YogaDriver,
       autoSchemaFile: true,
+      resolvers: { File: CustomFileScalar },
+      plugins: [useGraphQLSSE()],
     }),
     ClsModule.forRoot({
       global: true,
@@ -25,7 +30,7 @@ import { PrismaModule } from './prisma/prisma.module';
           const request = context.getArgByIndex<{
             req: Request & { auth0Id?: string };
           }>(2);
-          if (request.req.auth0Id) {
+          if (request.req?.auth0Id) {
             cls.set('auth0Id', request.req.auth0Id);
           }
         },
@@ -34,6 +39,7 @@ import { PrismaModule } from './prisma/prisma.module';
     ApiModule,
     IntegrationsModule,
     DomainModule,
+    MediaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
